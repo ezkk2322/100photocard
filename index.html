@@ -18,18 +18,20 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
-  min-height: 100vh;
+  padding: 0;
+  width: 100%;
+  background: transparent;
+  font-family: 'Ddurae', sans-serif;
+}
 
+body {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  background: #f2f2f2;
-
-  font-family: 'Ddurae', sans-serif;
+  padding: 16px;
 }
 
 
@@ -40,14 +42,12 @@ body {
 .card {
   position: relative;
 
-  width: min(700px, 92vw);
+  width: min(700px, 100%);
   aspect-ratio: 16 / 9;
 
   perspective: 1400px;
 
   cursor: pointer;
-
-  margin-bottom: 28px;
 
   isolation: isolate;
 }
@@ -60,7 +60,8 @@ body {
 
   transform-style: preserve-3d;
 
-  transition: transform 0.75s cubic-bezier(.2,.7,.2,1);
+  transition:
+    transform 0.75s cubic-bezier(.2,.7,.2,1);
 }
 
 .card.flipped .card-inner {
@@ -77,11 +78,11 @@ body {
 
   position: absolute;
 
-  inset: -18%;
-
-  pointer-events: none;
+  inset: -15%;
 
   z-index: 5;
+
+  pointer-events: none;
 
   opacity: 0;
 
@@ -90,35 +91,44 @@ body {
       115deg,
       rgba(255,255,255,0) 35%,
       rgba(255,255,255,0) 42%,
-      rgba(255,255,255,0.60) 50%,
+      rgba(255,255,255,0.58) 50%,
       rgba(255,255,255,0) 58%,
       rgba(255,255,255,0) 65%
     );
 
-  transform: translateX(-140%) skewX(-20deg);
+  transform:
+    translateX(-140%)
+    skewX(-20deg);
 }
 
 .card.shine::after {
-  animation: shineSweep 0.9s ease;
+  animation:
+    shineSweep 0.9s ease;
 }
 
 @keyframes shineSweep {
 
   0% {
-    transform: translateX(-140%) skewX(-20deg);
+    transform:
+      translateX(-140%)
+      skewX(-20deg);
+
     opacity: 0;
   }
 
-  25% {
-    opacity: 0.2;
+  30% {
+    opacity: 0.25;
   }
 
-  45% {
+  50% {
     opacity: 0.8;
   }
 
   100% {
-    transform: translateX(140%) skewX(-20deg);
+    transform:
+      translateX(140%)
+      skewX(-20deg);
+
     opacity: 0;
   }
 
@@ -131,7 +141,6 @@ body {
 
 .card-front,
 .card-back {
-
   position: absolute;
 
   inset: 0;
@@ -159,12 +168,11 @@ body {
   background: #ddd;
 }
 
-.card-front img.main-photo {
+.card-front img {
+  display: block;
 
   width: 100%;
   height: 100%;
-
-  display: block;
 
   object-fit: cover;
 }
@@ -175,8 +183,8 @@ body {
 ========================= */
 
 .card-back {
-
-  transform: rotateY(180deg);
+  transform:
+    rotateY(180deg);
 
   display: flex;
 
@@ -188,8 +196,8 @@ body {
   background:
     linear-gradient(
       180deg,
-      #e5e5e5 0%,
-      #d3d3d3 100%
+      #e3e3e3 0%,
+      #cccccc 100%
     );
 
   color: #222;
@@ -198,7 +206,6 @@ body {
 }
 
 .back-content {
-
   display: flex;
 
   flex-direction: column;
@@ -209,7 +216,6 @@ body {
 }
 
 .card-name {
-
   margin-bottom: 20px;
 
   font-size:
@@ -219,7 +225,6 @@ body {
 }
 
 .card-message {
-
   font-size:
     clamp(25px, 4vw, 40px);
 
@@ -234,11 +239,9 @@ body {
 ========================= */
 
 .signature-wrap {
-
   position: absolute;
 
   right: 18px;
-
   bottom: 12px;
 
   z-index: 3;
@@ -247,7 +250,6 @@ body {
 }
 
 .signature {
-
   display: block;
 
   width:
@@ -263,101 +265,14 @@ body {
 
 
 /* =========================
-   이름 입력 영역
-========================= */
-
-.editor {
-
-  width: min(420px, 92vw);
-
-  padding: 18px;
-
-  background: white;
-
-  border-radius: 16px;
-
-  box-shadow:
-    0 6px 20px rgba(0,0,0,0.10);
-}
-
-.editor-title {
-
-  margin-bottom: 12px;
-
-  text-align: center;
-
-  font-size: 20px;
-}
-
-input {
-
-  width: 100%;
-
-  padding: 13px 14px;
-
-  border: 1px solid #ddd;
-
-  border-radius: 10px;
-
-  font-family:
-    'Ddurae',
-    sans-serif;
-
-  font-size: 17px;
-
-  outline: none;
-}
-
-input:focus {
-  border-color: #999;
-}
-
-button {
-
-  width: 100%;
-
-  margin-top: 10px;
-
-  padding: 13px;
-
-  border: 0;
-
-  border-radius: 10px;
-
-  background: #222;
-
-  color: white;
-
-  font-family:
-    'Ddurae',
-    sans-serif;
-
-  font-size: 17px;
-
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.88;
-}
-
-.notice {
-
-  margin-top: 10px;
-
-  text-align: center;
-
-  font-size: 14px;
-
-  color: #888;
-}
-
-
-/* =========================
    모바일
 ========================= */
 
 @media (max-width: 480px) {
+
+  body {
+    padding: 8px;
+  }
 
   .card-back {
     padding: 24px;
@@ -368,14 +283,11 @@ button:hover {
   }
 
   .signature-wrap {
-    right: 12px;
-    bottom: 10px;
+    right: 10px;
+    bottom: 8px;
   }
 
 }
-
-
-/* 움직임 줄이기 설정 사용자 */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -395,10 +307,6 @@ button:hover {
 <body>
 
 
-<!-- =========================
-     포토카드
-========================= -->
-
 <div
   class="card"
   id="card"
@@ -412,7 +320,6 @@ button:hover {
     <div class="card-front">
 
       <img
-        class="main-photo"
         src="./card.png"
         alt="100일 포토카드"
       >
@@ -433,7 +340,6 @@ button:hover {
           OO님
         </div>
 
-
         <div class="card-message">
 100일을
 축하해주셔서
@@ -442,8 +348,6 @@ button:hover {
 
       </div>
 
-
-      <!-- 뒷면 싸인 -->
 
       <div class="signature-wrap">
 
@@ -455,7 +359,6 @@ button:hover {
 
       </div>
 
-
     </div>
 
 
@@ -465,65 +368,17 @@ button:hover {
 
 
 
-<!-- =========================
-     이름 변경
-========================= -->
-
-<div class="editor">
-
-  <div class="editor-title">
-    포토카드 이름 설정
-  </div>
-
-
-  <input
-    type="text"
-    id="nameInput"
-    placeholder="이름을 입력하세요"
-    maxlength="30"
-  >
-
-
-  <button
-    type="button"
-    id="copyButton"
-  >
-    링크 복사하기
-  </button>
-
-
-  <div
-    class="notice"
-    id="notice"
-  >
-    이름 입력 후 카드를 눌러 확인해보세요!
-  </div>
-
-</div>
-
-
-
 <script>
 
-/* =========================
-   URL에서 이름 가져오기
-========================= */
+/* URL에서 이름 가져오기 */
 
 const params =
   new URLSearchParams(
     window.location.search
   );
 
-const urlName =
-  params.get("name");
-
 const name =
-  urlName || "OO";
-
-
-/* =========================
-   요소 가져오기
-========================= */
+  params.get("name") || "OO";
 
 const card =
   document.getElementById("card");
@@ -531,30 +386,14 @@ const card =
 const cardName =
   document.getElementById("cardName");
 
-const nameInput =
-  document.getElementById("nameInput");
 
-const copyButton =
-  document.getElementById("copyButton");
-
-const notice =
-  document.getElementById("notice");
-
-
-/* =========================
-   처음 이름 표시
-========================= */
+/* 이름 표시 */
 
 cardName.textContent =
   name + "님";
 
-nameInput.value =
-  name;
 
-
-/* =========================
-   카드 뒤집기 + 반짝
-========================= */
+/* 카드 뒤집기 + 반짝 */
 
 let shineTimer;
 
@@ -566,8 +405,6 @@ card.addEventListener(
       "flipped"
     );
 
-
-    /* 반짝 애니메이션 초기화 */
 
     card.classList.remove(
       "shine"
@@ -599,77 +436,7 @@ card.addEventListener(
   }
 );
 
-
-/* =========================
-   이름 실시간 미리보기
-========================= */
-
-nameInput.addEventListener(
-  "input",
-  function () {
-
-    const newName =
-      nameInput.value.trim()
-      || "OO";
-
-    cardName.textContent =
-      newName + "님";
-
-  }
-);
-
-
-/* =========================
-   이름 포함 링크 복사
-========================= */
-
-copyButton.addEventListener(
-  "click",
-  async function () {
-
-    const newName =
-      nameInput.value.trim()
-      || "OO";
-
-
-    const url =
-      new URL(
-        window.location.href
-      );
-
-
-    url.searchParams.set(
-      "name",
-      newName
-    );
-
-
-    try {
-
-      await navigator
-        .clipboard
-        .writeText(
-          url.toString()
-        );
-
-
-      notice.textContent =
-        "✓ 링크 복사 완료!";
-
-    }
-
-    catch {
-
-      notice.textContent =
-        "링크 복사가 안 되면 주소창 링크를 직접 복사해주세요.";
-
-    }
-
-  }
-);
-
 </script>
-
 
 </body>
 </html>
